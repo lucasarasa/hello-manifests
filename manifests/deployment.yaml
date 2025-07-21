@@ -1,1 +1,27 @@
-#1yamlDeployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-app
+  name: hello-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - image: docker.io/lucassarasa/hello-app:latest
+        name: hello-app
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
