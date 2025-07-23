@@ -19,9 +19,9 @@ spec:
         app: hello-app
     spec:
       containers:
-      - image: lucassarasa/hello-app:v10
-        name: hello-app
-        ports:
-        - containerPort: 8080
-        resources: {}
+        - image: lucassarasa/hello-app:v10
+          name: hello-app
+          ports:
+            - containerPort: 8080
+          resources: {}
 status: {}

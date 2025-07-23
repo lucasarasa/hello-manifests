@@ -12,9 +12,14 @@ jobs:
             - name: Checkout do PR
               uses: actions/checkout@v3
 
-            - name: Validar YAML
-              run: yamllint manifests/deployment.yaml
+            - name: Verificar se o PR pode ser mesclado
+              run: |
+                if [ "${{ github.event.pull_request.mergeable }}" != "true" ]; then
+                  echo "O PR não pode ser mesclado automaticamente."
+                  exit 1
+                fi
+                echo "O PR está apto para merge."
 
-            - name: Monstrar imagem atualizada
+            - name: Mostrar imagem atualizada
               run: |
                 grep image: manifests/deployment.yaml
