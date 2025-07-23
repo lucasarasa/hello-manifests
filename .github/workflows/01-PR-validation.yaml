@@ -6,17 +6,17 @@ on:
       - main
 
 jobs:
-    validate-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout do PR
-              uses: actions/checkout@v3
+  validate-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do PR
+        uses: actions/checkout@v3
 
-            - name: Verificar imagem usada no deployment.yaml
-              run: |
-                echo "Imagem encontrada:"
-                grep "image:" manifests/deployment.yaml || echo "Não encontrou linha 'image:'"
+      - name: Verificar imagem usada no deployment.yaml
+        run: |
+          echo "Imagem encontrada:"
+          grep "image:" manifests/deployment.yaml || echo "Não encontrou linha 'image:'"
 
-            - name: Mostrar imagem atualizada
-              run: |
-                grep image: manifests/deployment.yaml
+      - name: Mostrar imagem atualizada
+        run: |
+          grep image: manifests/deployment.yaml
