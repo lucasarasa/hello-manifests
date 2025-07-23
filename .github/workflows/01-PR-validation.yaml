@@ -1,0 +1,20 @@
+name: Verificar PR de deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    validate-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout do PR
+              uses: actions/checkout@v3
+
+            - name: Validar YAML
+              run: yamllint manifests/deployment.yaml
+
+            - name: Monstrar imagem atualizada
+              run: |
+                grep image: manifests/deployment.yaml
