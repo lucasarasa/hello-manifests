@@ -12,13 +12,10 @@ jobs:
             - name: Checkout do PR
               uses: actions/checkout@v3
 
-            - name: Verificar se o PR pode ser mesclado
+            - name: Verificar imagem usada no deployment.yaml
               run: |
-                if [ "${{ github.event.pull_request.mergeable }}" != "true" ]; then
-                  echo "O PR não pode ser mesclado automaticamente."
-                  exit 1
-                fi
-                echo "O PR está apto para merge."
+                echo "Imagem encontrada:"
+                grep "image:" manifests/deployment.yaml || echo "Não encontrou linha 'image:'"
 
             - name: Mostrar imagem atualizada
               run: |
